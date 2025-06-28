@@ -85,9 +85,28 @@ systemd_setup(){
     systemctl start $app_name
     VALIDATE $? "Starting $app_name"
 }
+ 
+maven_setup(){
+
+    dnf install maven -y
+    VALIDATE $? "installing maven"
+    mvn clean package 
+    VALIDATE $? "Packaging the shipping application"
+    pwd
+    mv target/shipping-1.0.jar shipping.jar
+    VALIDATE $? "Moving and renaming Jar file"
+}
+
+python_setup(){
+    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    VALIDATE $? "installing python"
+    pip3 install -r requirements.txt &>>$LOG_FILE
+    VALIDATE $? "installing dependencies"
+}
 
 print_time(){
      END_TIME=$(date +%s)
      TOTAL_TIME=$(($END_TIME - $START_TIME))
      echo -e "Script executed successfully, $Y Time taken: $TOTAL_TIME seconds $N"
 }
+
