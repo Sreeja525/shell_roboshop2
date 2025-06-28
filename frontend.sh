@@ -24,11 +24,13 @@ VALIDATE $? "downloading web content"
 cd /usr/share/nginx/html 
 unzip /tmp/frontend.zip 
 VALIDATE $? "unzipping web content"
-
-cp $SCRIPT_DIR/nginx.conf /etc/nginx/
-
+echo " copied nginx.conf"
+cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
+echo " copied nginx.conf"
 cat /etc/nginx/nginx.conf
-VALIDATE $? "cpoying nginx conf file"
+
+echo " copied nginx.conf"
+VALIDATE $? "copoying nginx conf file"
 
 systemctl restart nginx 
 VALIDATE $? "restarting nginx"
