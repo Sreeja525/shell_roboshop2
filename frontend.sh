@@ -26,6 +26,8 @@ unzip /tmp/frontend.zip
 VALIDATE $? "unzipping web content"
 
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/
+
+cat /etc/nginx/nginx.conf
 VALIDATE $? "cpoying nginx conf file"
 
 systemctl restart nginx 
